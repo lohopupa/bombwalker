@@ -1,11 +1,11 @@
-# Bomb Walker
+# MineWalker
 
-Bomb Walker is a game inspired by classic minesweeper but with a unique twist – instead of clicking on cells, you navigate and explore the map by walking on it. Your goal is to safely traverse the area, avoiding hidden bombs, and reach the destination.
+MineWalker is a game inspired by classic minesweeper but with a unique twist – instead of clicking on cells, you navigate and explore the map by walking on it. Your goal is to safely traverse the area, avoiding hidden bombs, and reach the destination.
 
 ## How to Play
 
 1. **Run the Game:**
-    - Execute the script `start.sh` to launch the Bomb Walker game.
+    - Execute the script `start.sh` to launch the MineWalker game.
 
 ```
 ./start.sh
@@ -21,7 +21,7 @@ Bomb Walker is a game inspired by classic minesweeper but with a unique twist �
 
 ## Description
 
-Bomb Walker is written in Go and utilizes WebAssembly (WASM) for web deployment.
+Mine Walker is written in Go and utilizes WebAssembly (WASM) for web deployment.
 
 ## License
 
