@@ -31,6 +31,6 @@ Feel free to contribute, report issues, or suggest improvements!
 
 ## Author
 
-[Your Name]
+Lohopupa
 
 Happy walking and bomb avoiding!
