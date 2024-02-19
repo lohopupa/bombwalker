@@ -1,7 +1,75 @@
-.wrapper {
+@font-face {
+    font-family: 'merchant';
+    src: url('./assets/merchant-double.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('assets/minwwalker-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Updated to column layout */
+    align-items: center;
+    justify-content: space-between; /* Updated to space-between to distribute space vertically */
+    color: rgb(164, 139, 139);
+    font-family: "merchant", sans-serif;
+    overflow: hidden;
+    background-color: #000;
+}
+
+h1 {
+
+    margin: 20px 0; /* Add margin to the title */
+    text-align: center; /* Center the title */
+}
+
+.canvas-container {
+    width: 100%; /* Set the canvas width to 100% */
+    flex: 1;
+    /* padding: 20px; Adjust the padding as needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Optional background color with transparency for the canvas area */
+}
+
+.footer {
+
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.footer p, .footer a {
+    margin: 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.parallax-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden; /* Ensure the overflow is hidden to prevent scrolling */
+}
+
+.background {
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    background-image: url('assets/minwwalker-background.jpg');
+    background-size: cover;
+    background-position: center;
+    will-change: transform; /* Optimization hint for browsers */
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 1; /* Ensure the content is above the background */
 }
