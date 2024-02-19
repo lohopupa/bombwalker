@@ -6,6 +6,8 @@ import (
 
 type Context2d struct {
 	instance js.Value
+	Height   float64
+	Width    float64
 }
 
 type TextMetrics struct {
@@ -21,7 +23,7 @@ type TextMetrics struct {
 	IdeographicBaseline    float64
 }
 
-func (this Context2d) ClearRect(x, y, width, height float32) {
+func (this Context2d) ClearRect(x, y, width, height float64) {
 	this.instance.Call("clearRect", x, y, width, height)
 }
 
@@ -57,7 +59,6 @@ func (c *Context2d) MeasureText(text string) TextMetrics {
 		IdeographicBaseline:    textMetrics.Get("ideographicBaseline").Float(),
 	}
 }
-
 
 func (c *Context2d) MoveTo(x, y float64) {
 	c.instance.Call("moveTo", x, y)

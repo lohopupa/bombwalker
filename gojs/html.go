@@ -27,6 +27,8 @@ func (he HtmlElement) ToCanvas() HtmlCanvasElement {
 func (this HtmlCanvasElement) GetContext2d() *Context2d {
 	ctx := Context2d{
 		instance: this.instance.Call("getContext", "2d"),
+		Height: float64(this.height),
+		Width: float64(this.width),
 	}
 	return &ctx
 } 
