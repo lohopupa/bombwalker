@@ -1,0 +1,6 @@
+services:
+  game:
+    build:
+      context: .
+    ports:
+      - 6969:80
