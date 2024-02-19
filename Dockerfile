@@ -1,4 +1,4 @@
-FROM golang:latest as builder
+FROM golang:alpine as builder
 
 WORKDIR /app
 
@@ -6,11 +6,12 @@ COPY . .
 
 RUN GOARCH=wasm GOOS=js go build -o build/main.wasm game/main.go
 
-FROM nginx:latest
+FROM nginx:alpine
 
 WORKDIR /usr/share/nginx/html
 
 COPY --from=builder /app/build/main.wasm .
+COPY --from=builder /usr/local/go/misc/wasm/wasm_exec.js .
 COPY web/* .
 
 EXPOSE 80
