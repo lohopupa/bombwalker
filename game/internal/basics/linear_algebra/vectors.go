@@ -6,7 +6,7 @@ import (
 
 type Numbers interface {
 	// TODO: Add all numeric types
-	uint | int | float32
+	uint | int | float64
 }
 
 type Vector2[T Numbers] struct {
@@ -61,22 +61,22 @@ func (v Vector2[T]) Dot(v2 Vector2[T]) T {
 	return v.X*v2.X + v.Y*v2.Y
 }
 
-func (v Vector2[T]) Magnitude() float32 {
+func (v Vector2[T]) Magnitude() float64 {
 	return v.Distance(v)
 }
 
-func (v Vector2[T]) Distance(v2 Vector2[T]) float32 {
-	return float32(math.Sqrt(float64(v.X*v2.X + v.Y*v2.Y)))
+func (v Vector2[T]) Distance(v2 Vector2[T]) float64 {
+	return float64(math.Sqrt(float64(v.X*v2.X + v.Y*v2.Y)))
 }
 
-func (v Vector2[T]) Normalize() Vector2[float32] {
+func (v Vector2[T]) Normalize() Vector2[float64] {
 	magnitude := v.Magnitude()
 	if magnitude == 0 {
-		return Vector2[float32]{X: 0, Y: 0}
+		return Vector2[float64]{X: 0, Y: 0}
 	}
 
-	return Vector2[float32]{
-		X: float32(v.X),
-		Y: float32(v.Y),
+	return Vector2[float64]{
+		X: float64(v.X),
+		Y: float64(v.Y),
 	}.Div(magnitude)
 }
