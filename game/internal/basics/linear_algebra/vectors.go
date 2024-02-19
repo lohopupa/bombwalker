@@ -1,75 +1,82 @@
 package linearalgebra
 
 import (
-	"math"	
+	"math"
 )
 
 type Numbers interface {
 	// TODO: Add all numeric types
-	uint | int | float32 | float64
+	uint | int | float32
 }
 
 type Vector2[T Numbers] struct {
-	x T
-	y T
+	X T
+	Y T
 }
 
 func Vector2New[T Numbers](x, y T) Vector2[T] {
-	return Vector2[T]{x: x, y: y}
+	return Vector2[T]{X: x, Y: y}
 }
 
 func Vector2Zero[T Numbers]() Vector2[T] {
-	return Vector2[T]{x: 0, y: 0}
+	return Vector2[T]{X: 0, Y: 0}
 }
 
 func (v Vector2[T]) Add(v2 Vector2[T]) Vector2[T] {
 	return Vector2[T]{
-		x: v.x + v2.x,
-		y: v.y + v2.y,
+		X: v.X + v2.X,
+		Y: v.Y + v2.Y,
 	}
 }
 
 func (v Vector2[T]) Sub(v2 Vector2[T]) Vector2[T] {
 	return Vector2[T]{
-		x: v.x - v2.x,
-		y: v.y - v2.y,
+		X: v.X - v2.X,
+		Y: v.Y - v2.Y,
 	}
 }
 
 func (v Vector2[T]) Mul(v2 Vector2[T]) Vector2[T] {
 	return Vector2[T]{
-		x: v.x * v2.x,
-		y: v.y * v2.y,
+		X: v.X * v2.X,
+		Y: v.Y * v2.Y,
 	}
 }
 
 func (v Vector2[T]) Scale(scalar T) Vector2[T] {
 	return Vector2[T]{
-		x: v.x * scalar,
-		y: v.y * scalar,
+		X: v.X * scalar,
+		Y: v.Y * scalar,
 	}
 }
 
 func (v Vector2[T]) Div(scalar T) Vector2[T] {
 	return Vector2[T]{
-		x: v.x / scalar,
-		y: v.y / scalar,
+		X: v.X / scalar,
+		Y: v.Y / scalar,
 	}
 }
-
 
 func (v Vector2[T]) Dot(v2 Vector2[T]) T {
-	return v.x*v2.x + v.y*v2.y
+	return v.X*v2.X + v.Y*v2.Y
 }
 
-func (v Vector2[T]) Magnitude() T {
-	return T(math.Sqrt(float64(v.x*v.x + v.y*v.y)))
+func (v Vector2[T]) Magnitude() float32 {
+	return v.Distance(v)
 }
 
-func (v Vector2[T]) Normalize() Vector2[T] {
+func (v Vector2[T]) Distance(v2 Vector2[T]) float32 {
+	return float32(math.Sqrt(float64(v.X*v2.X + v.Y*v2.Y)))
+}
+
+func (v Vector2[T]) Normalize() Vector2[float32] {
 	magnitude := v.Magnitude()
 	if magnitude == 0 {
-		return Vector2[T]{x: 0, y: 0}
+		return Vector2[float32]{X: 0, Y: 0}
 	}
-	return v.Div(magnitude)
+
+	return Vector2[float32]{
+		X: float32(v.X),
+		Y: float32(v.Y),
+	}.Div(magnitude)
 }
