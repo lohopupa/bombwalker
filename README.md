@@ -5,19 +5,19 @@ MineWalker is a game inspired by classic minesweeper but with a unique twist –
 ## How to Play
 
 1. **Run the Game:**
-    - Execute the script `start.sh` to launch the MineWalker game.
-
-```
-./start.sh
-```
+    - Run  `docker compose up -d` in console to launch the MineWalker game.
+    - Go to http://localhost:6969.
 
 2. **Gameplay:**
     - Navigate through the map by walking on cells.
     - Avoid stepping on hidden bombs.
-    - Reach the destination safely to win the game.
+    - Mark all mines with flags or open all empty cells to win the game.
 
 3. **Controls:**
     - Use arrow keys to move: Up, Down, Left, and Right.
+    - Use the spacebar to place the flag on the cell in front of the player.
+    - Use mouse left button to go to specific cell.
+    - Use mouse rigth button to set flag.
 
 ## Description
 
