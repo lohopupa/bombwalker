@@ -21,8 +21,9 @@ func (r Renderer) FillRect(rect shapes.Rect, c color.Color) {
 	r.ctx.FillRect(rect.Pos.X, rect.Pos.Y, rect.Size.X, rect.Size.Y)
 }
 
-func (r Renderer) StrokeRect(rect shapes.Rect, c color.Color) {
+func (r Renderer) StrokeRect(rect shapes.Rect, c color.Color, width int) {
 	r.ctx.SetStrokeStyle(c.ToHexString())
+	r.ctx.SetLineWidth(width)
 	r.ctx.StrokeRect(rect.Pos.X, rect.Pos.Y, rect.Size.X, rect.Size.Y)
 }
 
@@ -53,5 +54,12 @@ func (r Renderer) Text(pos la.Vector2[float64], text string) {
 func (r Renderer) TextStyled(pos la.Vector2[float64], color color.Color, fontSizePX int, fontFamily, text string) {
 	r.ctx.SetFillStyle(color.ToHexString())
 	r.ctx.SetFont(fmt.Sprintf("%dpx %s", fontSizePX, fontFamily))
-	r.ctx.FillText(text, pos.X, pos.Y)
+	r.ctx.FillText(text, pos.X, pos.Y + float64(fontSizePX))
+}
+
+func (r Renderer) MesureTextStyled(pos la.Vector2[float64], color color.Color, fontSizePX int, fontFamily, text string) gojs.TextMetrics {
+	r.ctx.SetFillStyle(color.ToHexString())
+	r.ctx.SetFont(fmt.Sprintf("%dpx %s", fontSizePX, fontFamily))
+	// r.ctx.FillText(text, pos.X, pos.Y + float64(fontSizePX))
+	return r.ctx.MeasureText(text)
 }

@@ -75,6 +75,27 @@ func FromHSV(h uint, s, v float64) Color {
 }
 
 func (c Color) ToHexString() string {
+	return fmt.Sprintf("#%02X%02X%02X%02X", c.R, c.G, c.B, c.A)
+}
 
-	return fmt.Sprintf("#%02X%02X%02X", c.R, c.G, c.B)
+func (c Color) ToRGBAString() string {
+	return fmt.Sprintf("rgb(%d %d %d)", c.R, c.G, c.B)
+}
+
+func (c Color) SetA(a uint8) Color {
+	c.A = a
+	return c
+}
+
+func (c Color) SetR(r uint8) Color {
+	c.R = r
+	return c
+}
+func (c Color) SetG(g uint8) Color {
+	c.G = g
+	return c
+}
+func (c Color) SetB(b uint8) Color {
+	c.B = b
+	return c
 }

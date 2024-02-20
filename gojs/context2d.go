@@ -48,15 +48,15 @@ func (c *Context2d) MeasureText(text string) TextMetrics {
 
 	return TextMetrics{
 		Width:                  textMetrics.Get("width").Float(),
-		ActualBoundingBoxLeft:  textMetrics.Get("actualBoundingBoxLeft").Float(),
-		ActualBoundingBoxRight: textMetrics.Get("actualBoundingBoxRight").Float(),
-		FontBoundingBoxAscent:  textMetrics.Get("fontBoundingBoxAscent").Float(),
-		FontBoundingBoxDescent: textMetrics.Get("fontBoundingBoxDescent").Float(),
-		EmHeightAscent:         textMetrics.Get("emHeightAscent").Float(),
-		EmHeightDescent:        textMetrics.Get("emHeightDescent").Float(),
-		HangingBaseline:        textMetrics.Get("hangingBaseline").Float(),
-		AlphabeticBaseline:     textMetrics.Get("alphabeticBaseline").Float(),
-		IdeographicBaseline:    textMetrics.Get("ideographicBaseline").Float(),
+		// ActualBoundingBoxLeft:  textMetrics.Get("actualBoundingBoxLeft").Float(),
+		// ActualBoundingBoxRight: textMetrics.Get("actualBoundingBoxRight").Float(),
+		// FontBoundingBoxAscent:  textMetrics.Get("fontBoundingBoxAscent").Float(),
+		// FontBoundingBoxDescent: textMetrics.Get("fontBoundingBoxDescent").Float(),
+		// EmHeightAscent:         textMetrics.Get("emHeightAscent").Float(),
+		// EmHeightDescent:        textMetrics.Get("emHeightDescent").Float(),
+		// HangingBaseline:        textMetrics.Get("hangingBaseline").Float(),
+		// AlphabeticBaseline:     textMetrics.Get("alphabeticBaseline").Float(),
+		// IdeographicBaseline:    textMetrics.Get("ideographicBaseline").Float(),
 	}
 }
 
@@ -94,6 +94,10 @@ func (c *Context2d) SetFillStyle(style string) {
 
 func (c *Context2d) SetStrokeStyle(style string) {
 	c.instance.Set("strokeStyle", style)
+}
+
+func (c *Context2d) SetLineWidth(width int) {
+	c.instance.Set("lineWidth", width)
 }
 
 func (c *Context2d) SetFont(font string) {

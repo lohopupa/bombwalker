@@ -16,10 +16,10 @@ const (
 	MouseUpEvent = "mouseup"
 	MouseClickEvent = "click"
 	MouseDblClickEvent = "dblclick"
+	MouseMove = "mousemove"
 	// TODO: Add support for other events
 	// MouseEnter = "mouseenter"
 	// MouseLeave = "mouseleave"
-	// MouseMove = "mousemove"
 	// MouseOut = "mouseout"
 	// MouseOver = "mouseover"
 )
@@ -72,10 +72,10 @@ func MouseEventFromArgs(args []js.Value) MouseEvent {
 	arg := args[0]
 	return MouseEvent{
 		EventType: arg.Get("type").String(),
-		AltKey: arg.Get("altkey").Bool(),
-		CtrlKey: arg.Get("ctrlKey").Bool(),
-		ShiftKey: arg.Get("shiftKey").Bool(),
-		MetaKey: arg.Get("metaKey").Bool(),
+		// AltKey: arg.Get("altkey").Bool(),
+		// CtrlKey: arg.Get("ctrlKey").Bool(),
+		// ShiftKey: arg.Get("shiftKey").Bool(),
+		// MetaKey: arg.Get("metaKey").Bool(),
 		Button: arg.Get("button").Int(),
 		ClientX: arg.Get("clientX").Int(),
 		ClientY: arg.Get("clientY").Int(),

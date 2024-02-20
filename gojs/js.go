@@ -39,11 +39,31 @@ func AddEventListener(eventType string, callback func(Event)) {
 		case MouseClickEvent: fallthrough
 		case MouseDblClickEvent: fallthrough
 		case MouseDownEvent: fallthrough
-		case MouseUpEvent: 
+		case MouseUpEvent: fallthrough
+		case MouseMove:
 			go callback(MouseEventFromArgs(args))
 			break
 		}
 		return nil
 	}))
+}
 
+func (e HtmlElement) AddEventListener(eventType string, callback func(Event)) {
+    e.instance.Call("addEventListener", eventType, js.FuncOf( func(this js.Value, args []js.Value) any {
+		switch eventType {
+		case KeyDownEvent: fallthrough
+		case KeyPressEvent: fallthrough
+		case KeyUpEvent: 
+			go callback(KeyboardEventFromArgs(args))
+			break
+		case MouseClickEvent: fallthrough
+		case MouseDblClickEvent: fallthrough
+		case MouseDownEvent: fallthrough
+		case MouseUpEvent: fallthrough
+		case MouseMove:
+			go callback(MouseEventFromArgs(args))
+			break
+		}
+		return nil
+	}))
 }

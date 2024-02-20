@@ -6,5 +6,5 @@ document.addEventListener('mousemove', (event) => {
     const mouseX = event.clientX / window.innerWidth - 0.5;
     const mouseY = event.clientY / window.innerHeight - 0.5;
 
-    background.style.transform = `translate(${-mouseX * 50}px, ${-mouseY * 50}px)`;
+    background.style.transform = `translate(${-mouseX * 50}px, ${-mouseY * 50}px) scale(1.1)`;
 });
