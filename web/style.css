@@ -1,6 +1,14 @@
 @font-face {
-    font-family: 'merchant';
+    font-family: 'merchantD';
     src: url('./assets/merchant-double.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'merchant';
+    src: url('./assets/merchant.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'merchantW';
+    src: url('./assets/merchant-wide.ttf') format('truetype');
 }
 
 canvas {
@@ -19,7 +27,7 @@ body {
     align-items: center;
     justify-content: space-between;
     color: rgb(164, 139, 139);
-    font-family: "merchant", sans-serif;
+    font-family: "merchantD", sans-serif;
     overflow: hidden;
     background-color: #000;
 }

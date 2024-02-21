@@ -14,19 +14,19 @@ type Window struct {
 	Platform    *platform.Platform
 	ColorScheme types.ColorScheme
 	FontFamily  string
-	drawChan    *chan bool
+	stopChan    *chan bool
 }
 
 func NewWindow(title string, r platform.Platform) *Window {
 	x, y := r.GetSize()
-	ch := make(chan bool)
+	stopch := make(chan bool, 10)
 	return &Window{
 		Title:       title,
 		SizeX:       x,
 		SizeY:       y,
 		ColorScheme: types.DefaultColorScheme(),
 		Platform:    &r,
-		drawChan:    &ch,
+		stopChan:    &stopch,
 	}
 }
 
@@ -34,6 +34,12 @@ func (w *Window) AddElement(e elements.Element) {
 	e.SetColors(w.ColorScheme)
 	e.SetFontFamily(w.FontFamily)
 	w.Elements = append(w.Elements, &e)
+}
+
+func (w *Window) AddElements(es... elements.Element) {
+	for _, e := range es {
+		w.AddElement(e)
+	}
 }
 
 func (w *Window) Draw() {
@@ -52,7 +58,7 @@ func (w *Window) Draw() {
 func (w *Window) HandleEvents() {
 	for event := range (*w.Platform).GetEventsChan() {
 		select {
-		case <-*w.drawChan:
+		case <-*w.stopChan:
 			return
 		default:
 			{
@@ -65,6 +71,6 @@ func (w *Window) HandleEvents() {
 }
 
 func (w *Window) Stop() {
-	*w.drawChan <- true
+	*w.stopChan <- true
 	(*w.Platform).StopRendering()
 }

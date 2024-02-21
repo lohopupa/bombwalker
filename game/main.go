@@ -1,15 +1,16 @@
 package main
 
 import (
+	"minewalker/game/game"
 	"minewalker/game/pkg/platform"
-	"minewalker/game/ui"
 	// "time"
 )
 
 func main() {
 	platform := platform.InitWasm("canvas")
-	w := ui.CreateMainPage(platform)
-	w.Draw()
+	game := game.InitGameState(platform)
+	game.Start()
+	// w.Draw()
 	// w.Stop()
 	select {}
 }
