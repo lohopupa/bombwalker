@@ -4,7 +4,7 @@ import (
 	"syscall/js"
 )
 
-// TODO: Adapt to js 
+// TODO: Adapt to js
 // type UIEvent struct {}
 
 const (

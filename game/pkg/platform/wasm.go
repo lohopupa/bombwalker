@@ -40,7 +40,7 @@ func handleEvent(e gojs.Event, ch chan platform.Event) {
 		{
 			ch <- platform.Event{
 				EventType: platform.EventTypeKeyPress,
-				KeyCode:   event.Key,
+				KeyCode:   event.Code,
 			}
 		}
 	case gojs.MouseEvent:
@@ -74,7 +74,7 @@ func InitWasm(canvasId string) *WASM {
 	}
 	gojs.AddEventListener(gojs.MouseClickEvent, eventListener)
 	gojs.AddEventListener(gojs.MouseMoveEvent, eventListener)
-	gojs.AddEventListener(gojs.KeyPressEvent, eventListener)
+	gojs.AddEventListener(gojs.KeyDownEvent, eventListener)
 	return &WASM{ctx: *canvas.ToCanvas().GetContext2d(), events: events}
 }
 func (r WASM) ClearRect(x, y, width, height float64) {

@@ -31,5 +31,5 @@ func (e *GameUIElement) GetBoundary(platform.Platform) (float64, float64, float6
 }
 
 func (e *GameUIElement) HandleEvent(pe platform.Event, p platform.Platform) {
-
+	
 }
