@@ -29,7 +29,7 @@ type ElementBase struct {
 	PosY             float64
 	Width            float64
 	Height           float64
-	Text             string
+	GetText          func() string
 	TextSize         float64
 	FontFamily       string
 	AlignX           AlignX

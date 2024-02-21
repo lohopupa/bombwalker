@@ -11,8 +11,9 @@ type ColorScheme struct {
 func DefaultColorScheme() ColorScheme {
 	return ColorScheme{
 		PrimaryColor: FromHexString("#303030"),
-		AccentColor: Color{139, 139, 139, 255},
+		AccentColor: Color{181, 165, 166, 255},
+		// AccentColor: Color{139, 139, 139, 255},
 		PrimaryColorHighlight: FromHexString("#404040"),
-		AccentColorHighlight: Color{150, 150, 150, 255},
+		AccentColorHighlight: Color{181, 165, 166, 255},
 	}
 }

@@ -15,7 +15,7 @@ func NewLabel(x, y float64, text string) *Label {
 			PosY:             y,
 			Width:            0,
 			Height:           0,
-			Text:             text,
+			GetText:          func() string { return text },
 			TextSize:         20,
 			AlignX:           AlignXLeft,
 			AlignY:           AlignYBottom,
@@ -28,11 +28,11 @@ func NewLabel(x, y float64, text string) *Label {
 
 func (b *Label) Draw(r platform.Platform) {
 	x, y, _, _ := (*b).GetBoundary(r)
-	r.Text(x, y, b.TextSize, b.FontFamily, b.Text, b.ColorScheme.AccentColor)
+	r.Text(x, y, b.TextSize, b.FontFamily, b.GetText(), b.ColorScheme.AccentColor)
 }
 
 func (b *Label) GetBoundary(r platform.Platform) (x, y, w, h float64) {
-	w = r.TextWidth(b.Text, b.FontFamily, b.TextSize)
+	w = r.TextWidth(b.GetText(), b.FontFamily, b.TextSize)
 	h = b.TextSize
 	x = b.PosX
 	y = b.PosY
