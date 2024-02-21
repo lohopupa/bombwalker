@@ -3,6 +3,10 @@
     src: url('./assets/merchant-double.ttf') format('truetype');
 }
 
+canvas {
+    user-select: none;
+}
+
 body {
     margin: 0;
     padding: 0;

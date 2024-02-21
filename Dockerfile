@@ -13,7 +13,7 @@ WORKDIR /usr/share/nginx/html
 COPY --from=builder /app/build/main.wasm .
 COPY --from=builder /usr/local/go/misc/wasm/wasm_exec.js .
 COPY web/* .
-COPY web/assets ./assets
+COPY assets/web ./assets
 
 EXPOSE 80
 
