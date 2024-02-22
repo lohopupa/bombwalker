@@ -42,6 +42,7 @@ func createMainWindow(p platform.Platform, g *Game) *window.Window {
 	exitBtn.PosY = btnOffset
 	exitBtn.ClickOnKey = "Escape"
 	exitBtn.OnClick = func() {
+		g.Restart()
 		g.ChangeWindow("hello")
 	}
 
@@ -51,7 +52,7 @@ func createMainWindow(p platform.Platform, g *Game) *window.Window {
 	restartBtn.AlignX = elements.AlignXRight
 	restartBtn.ClickOnKey = "KeyR"
 	restartBtn.OnClick = func() {
-		g.ChangeWindow("shit")
+		g.Restart()
 	}
 
 	settingsBtn := mainWindowButton("Settings", btnWidth, btnHeight)
@@ -91,7 +92,7 @@ func createMainWindow(p platform.Platform, g *Game) *window.Window {
 	bombsLbl.GetText = func() string { return fmt.Sprintf("Bombs: %d/%d", g.BombsOpen, g.BombsTotal) }
 	bombsLbl.TextSize = infoTextSize
 
-	gameE := GameUIElement{300, 30, psx - 600, psy - 60}
+	gameE := GameUIElement{300, 30, psx - 600, psy - 60, g}
 
 	w.AddElements(exitBtn, restartBtn, settingsBtn, helpBtn, scoreLbl, gridSizeLbl, bombsLbl, &gameE)
 	return w

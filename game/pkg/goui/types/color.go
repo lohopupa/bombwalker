@@ -62,5 +62,5 @@ func FromHSV(h uint, s, v float64) Color {
 
 func (c Color) ToHexString() string {
 
-	return fmt.Sprintf("#%02X%02X%02X", c.R, c.G, c.B)
+	return fmt.Sprintf("#%02X%02X%02X%02X", c.R, c.G, c.B, c.A)
 }

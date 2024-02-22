@@ -72,7 +72,7 @@ func InitWasm(canvasId string) *WASM {
 	eventListener := func(e gojs.Event) {
 		handleEvent(e, events)
 	}
-	gojs.AddEventListener(gojs.MouseClickEvent, eventListener)
+	gojs.AddEventListener(gojs.MouseDownEvent, eventListener)
 	gojs.AddEventListener(gojs.MouseMoveEvent, eventListener)
 	gojs.AddEventListener(gojs.KeyDownEvent, eventListener)
 	return &WASM{ctx: *canvas.ToCanvas().GetContext2d(), events: events}
