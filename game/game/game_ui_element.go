@@ -40,6 +40,9 @@ func (e *GameUIElement) GetBoundary(platform.Platform) (float64, float64, float6
 }
 
 func (g *GameUIElement) HandleEvent(e platform.Event, p platform.Platform) {
+	if !g.GameState.Alive || g.GameState.Win {
+		return
+	}
 	x, y, w, h := g.GetBoundary(p)
 	mouseOver := e.MousePosX > x && e.MousePosX < x+w && e.MousePosY > y && e.MousePosY < y+h
 	switch e.EventType {
@@ -117,7 +120,7 @@ func (e *GameUIElement) drawGrid(p platform.Platform) {
 			c := e.GameState.Map[px*gs+py]
 			cText, cColor := getCellTextAndColor(*c)
 			var stroke float64
-			if c.Hover && e.GameState.Alive {
+			if c.Hover && e.GameState.Alive && !e.GameState.Win {
 				stroke = 4
 			} else {
 				stroke = 2
