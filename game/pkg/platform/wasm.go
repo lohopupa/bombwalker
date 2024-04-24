@@ -75,6 +75,7 @@ func InitWasm(canvasId string) *WASM {
 	gojs.AddEventListener(gojs.MouseDownEvent, eventListener)
 	gojs.AddEventListener(gojs.MouseMoveEvent, eventListener)
 	gojs.AddEventListener(gojs.KeyDownEvent, eventListener)
+	gojs.AddEventListener("resize", func(e gojs.Event){fmt.Println("RESIZE")})
 	return &WASM{ctx: *canvas.ToCanvas().GetContext2d(), events: events}
 }
 func (r WASM) ClearRect(x, y, width, height float64) {

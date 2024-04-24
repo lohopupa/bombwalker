@@ -38,8 +38,8 @@ func InitGameState(p platform.Platform) Game {
 	g.Windows["help"] = createHelpWindow(p, &g)
 	g.Windows["shit"] = createShitWindow(p, &g)
 	g.BombsOpen = 0
-	g.BombsTotal = 10
-	g.GridSize = 10
+	g.BombsTotal = 50
+	g.GridSize = 20
 	g.Score = g.GridSize * g.GridSize
 	g.Alive = true
 	g.generateMap()
@@ -73,12 +73,12 @@ func (g *Game) updateNeighbors(idx int) {
 	ry := 1
 	if idx%gs == 0 {
 		lx = 0
-	} else if idx%gs == 9 {
+	} else if idx%gs == gs-1 {
 		rx = 0
 	}
 	if idx/gs == 0 {
 		ly = 0
-	} else if idx/gs == 9 {
+	} else if idx/gs == gs-1 {
 		ry = 0
 	}
 	for x := lx; x <= rx; x += 1 {
@@ -97,7 +97,7 @@ func (g *Game) Start() {
 }
 
 func (g *Game) ChangeWindow(windowName string) {
-	// TODO: After window changes next event is loss
+	//TODO: After window changes next event is loss
 	if window := g.Windows[windowName]; window != nil {
 		cw := g.Windows[g.CurrentWindow]
 		cw.Stop()
@@ -159,6 +159,7 @@ func (g *Game) OpenCell(idx int) {
 	cell := g.Map[idx]
 	if cell.Empty {
 		if !cell.Open {
+			g.OpenArea(idx, 20)
 			cell.Open = true
 			g.Score -= 1
 			if cell.Marked {
@@ -184,4 +185,44 @@ func (g *Game) MarkCell(idx int) {
 		}
 	}
 	g.CheckWin()
+}
+
+func (g *Game) OpenArea(idx, depth int) {
+	cell := g.Map[idx]
+	if !cell.Empty || cell.Open || cell.Marked || depth == 0 {
+		return
+	}
+	if cell.BombsNear != 0 {
+		cell.Open = true
+		// g.Score -= 1
+		return
+	}
+	cell.Open = true
+	g.Score -= 1
+	gs := int(g.GridSize)
+	lx := -1
+	rx := 1
+	ly := -1
+	ry := 1
+	if idx%gs == 0 {
+		lx = 0
+	} else if idx%gs == gs-1 {
+		rx = 0
+	}
+	if idx/gs == 0 {
+		ly = 0
+	} else if idx/gs == gs-1 {
+		ry = 0
+	}
+	for x := lx; x <= rx; x += 1 {
+		for y := ly; y <= ry; y += 1 {
+			i := idx + x + y*gs
+			if i >= 0 && i < gs*gs {
+				// if cell.BombsNear != 0 {
+					g.OpenArea(i, depth-1)
+				// }
+			}
+		}
+	}
+
 }

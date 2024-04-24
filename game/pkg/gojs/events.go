@@ -4,7 +4,7 @@ import (
 	"syscall/js"
 )
 
-// TODO: Adapt to js
+//TODO: Adapt to js
 // type UIEvent struct {}
 
 const (
@@ -17,7 +17,7 @@ const (
 	MouseClickEvent = "click"
 	MouseDblClickEvent = "dblclick"
 	MouseMoveEvent = "mousemove"
-	// TODO: Add support for other events
+	//TODO: Add support for other events
 	// MouseEnter = "mouseenter"
 	// MouseLeave = "mouseleave"
 	// MouseOut = "mouseout"
@@ -26,7 +26,7 @@ const (
 
 type Event interface {
 }
-// TODO: Add support for gestures
+//TODO: Add support for gestures
 type KeyboardEvent struct {
 	EventType string
 	AltKey bool

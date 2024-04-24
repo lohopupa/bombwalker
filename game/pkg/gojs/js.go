@@ -27,6 +27,7 @@ func RequestAnimationFrame(callback AnimationCallback) uint64 {
 	}))
 	return 0
 }
+// FIXME: Create single function for all events or get rid of gojs
 
 func AddEventListener(eventType string, callback func(Event)) {
 	js.Global().Get("document").Call("addEventListener", eventType, js.FuncOf(func(this js.Value, args []js.Value) any {

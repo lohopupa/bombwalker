@@ -100,6 +100,9 @@ func (g *GameUIElement) HandleEvent(e platform.Event, p platform.Platform) {
 						g.GameState.PlayerX -= 1
 					}
 				}
+			default: {
+				return
+			}
 			}
 			g.GameState.OpenCell(int(g.GameState.PlayerX * g.GameState.GridSize + g.GameState.PlayerY))
 

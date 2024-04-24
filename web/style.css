@@ -30,6 +30,7 @@ body {
     font-family: "merchantD", sans-serif;
     overflow: hidden;
     background-color: #000;
+    user-select: none;
 }
 
 h1 {

@@ -14,19 +14,18 @@ type Window struct {
 	Platform    *platform.Platform
 	ColorScheme types.ColorScheme
 	FontFamily  string
-	stopChan    *chan bool
+	Running 	bool
 }
 
 func NewWindow(title string, r platform.Platform) *Window {
 	x, y := r.GetSize()
-	stopch := make(chan bool, 10)
 	return &Window{
 		Title:       title,
 		SizeX:       x,
 		SizeY:       y,
 		ColorScheme: types.DefaultColorScheme(),
 		Platform:    &r,
-		stopChan:    &stopch,
+		Running: 	 false,
 	}
 }
 
@@ -36,13 +35,14 @@ func (w *Window) AddElement(e elements.Element) {
 	w.Elements = append(w.Elements, &e)
 }
 
-func (w *Window) AddElements(es... elements.Element) {
+func (w *Window) AddElements(es ...elements.Element) {
 	for _, e := range es {
 		w.AddElement(e)
 	}
 }
 
 func (w *Window) Draw() {
+	w.Running = true
 	draw := func(int) {
 		(*w.Platform).ClearRect(0, 0, w.SizeX, w.SizeY)
 		(*w.Platform).FillRect(0, 0, w.SizeX, w.SizeY, w.ColorScheme.PrimaryColor)
@@ -57,20 +57,16 @@ func (w *Window) Draw() {
 
 func (w *Window) HandleEvents() {
 	for event := range (*w.Platform).GetEventsChan() {
-		select {
-		case <-*w.stopChan:
+		for _, element := range w.Elements {
+			(*element).HandleEvent(event, *w.Platform)
+		}
+		if !w.Running {
 			return
-		default:
-			{
-				for _, element := range w.Elements {
-					(*element).HandleEvent(event, *w.Platform)
-				}
-			}
 		}
 	}
 }
 
 func (w *Window) Stop() {
-	*w.stopChan <- true
+	w.Running = false
 	(*w.Platform).StopRendering()
 }

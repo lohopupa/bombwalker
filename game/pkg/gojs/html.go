@@ -16,7 +16,7 @@ type HtmlCanvasElement struct {
 }
 
 func (he HtmlElement) ToCanvas() HtmlCanvasElement {
-	// TODO: Check if element is canvas
+	//TODO: Check if element is canvas
 	return HtmlCanvasElement{
 		HtmlElement: he,
 		width: he.instance.Get("width").Int(),
