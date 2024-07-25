@@ -39,7 +39,7 @@ func InitGameState(p platform.Platform) Game {
 	g.Windows["shit"] = createShitWindow(p, &g)
 	g.BombsOpen = 0
 	g.BombsTotal = 200
-	g.GridSize = 40
+	g.GridSize = 30
 	g.Score = g.GridSize * g.GridSize
 	g.Alive = true
 	g.generateMap()
